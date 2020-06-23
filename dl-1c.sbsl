@@ -99,7 +99,7 @@ method download(cookies: Map, nick: String, ver: String, path_folder: String, pa
     val url1 = URL_DOWNLOAD 
         + "?" + "nick=" + nick
         + "&" + "ver="  + ver
-        + "&" + "path=" + path_folder + "\\" + path_version + "\\" + path_filename
+        + "&" + "path=" + path_folder + "\%5C" + path_version + "\%5C" + path_filename  // https://github.com/klimenko-1c/dl-1c/issues/2 
 
     use response1 = HttpClient.GetRequest(url1)
         .SetCookies(getCookie(cookies))
