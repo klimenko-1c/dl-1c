@@ -13,9 +13,10 @@ method extract(text: String, startPattern: String, endPattern: String): String
 
 method auth(username: String, password: String): String
 
-    var response1 = HttpClient.GetRequest(URL_RELEASE).Execute() 
+    use response1 = HttpClient.GetRequest(URL_RELEASE).Execute() 
     val cookies1 = response1.Headers.GetFirst("Set-Cookie")
     val src = response1.Body.ReadAsText()
+    response1.Close()
 
     val action = extract(src, "form method=\"post\" id=\"loginForm\" action=\"", "\"")
     val execution =  extract(src, "input type=\"hidden\" name=\"execution\" value=\"", "\"")
@@ -30,14 +31,16 @@ method auth(username: String, password: String): String
         + "&" + "geolocation="
         + "&" + "submit=\%D0\%92\%D0\%BE\%D0\%B9\%D1\%82\%D0\%B8"
 
-    val response2 = HttpClient.PostRequest(URL_LOGIN + action)
+    use response2 = HttpClient.PostRequest(URL_LOGIN + action)
         .SetContentType("application/x-www-form-urlencoded")
         .SetCookies(cookies1)
         .SetBody(body)
         .Execute()
     
     val cookies2 = response2.Headers.GetFirst("Set-Cookie")
-    if not (cookies2.GetType() == Strings.GetType() and cookies2.Find("TGC=") > -1)
+    response2.Close()
+    
+    if not (cookies2 is String and cookies2.Find("TGC=") > -1)
        throw new ExceptionDL1C("Auth failed")
     ;
 
@@ -51,7 +54,7 @@ method download(cookies: String, nick: String, ver: String, path_folder: String,
         + "&" + "ver="  + ver
         + "&" + "path=" + path_folder + "\\" + path_version + "\\" + path_filename
 
-    val write = new File(path_filename).OpenWritableStream()
+    use write = new File(path_filename).OpenWritableStream()
 
     HttpClient
         .GetRequest(url)
