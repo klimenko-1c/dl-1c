@@ -223,7 +223,7 @@ method downloadPlatform(cookies: Map, version: String, prefix: String, extension
     
     val path_folder = "Platform"
     val path_version = version.Replace(".", "_")
-    val path_filename = path_folder + "_" + path_version + "." + extension
+    val path_filename = prefix + "_" + path_version + "." + extension
 
     val nick = path_folder + version.Split(".")[0] + version.Split(".")[1]
 
