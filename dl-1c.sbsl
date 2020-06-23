@@ -56,14 +56,14 @@ method download(cookies: String, nick: String, ver: String, path_folder: String,
 
     use write = new File(path_filename).OpenWritableStream()
 
-    HttpClient
-        .GetRequest(url)
+    use response = HttpClient.GetRequest(url)
         .SetCookies(cookies)
         .Execute()
-        .Body
-        .CopyTo(write)
+
+    response.Body.CopyTo(write)
 
     write.Close()
+    response.Close()
 ;
 
 method downloadPlatform(cookies: String, version: String, prefix: String, postfix: String, extension: String)
