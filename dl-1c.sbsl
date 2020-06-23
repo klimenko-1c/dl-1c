@@ -150,6 +150,8 @@ method main(username: String, password: String, target: String, version: String)
             downloadPlatform(cookies, version, "windows64full", "", "rar")
         when "platform-win32"
             downloadPlatform(cookies, version, "windows", "", "rar")
+        when "platform-osx"
+            downloadPlatform(cookies, version, "clientosx", "", "dmg")
         when "server-win64"
             downloadPlatform(cookies, version, "windows64", "", "rar")
         when "server-deb64"
