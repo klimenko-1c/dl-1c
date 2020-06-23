@@ -19,6 +19,7 @@ executor.cmd -s dl-1c.sbsl username password target version
 -|-
 platform-win64  | Технологическая платформа 1С:Предприятия (64-bit) для Windows
 platform-win32  | Технологическая платформа 1С:Предприятия для Windows
+platform-osx    | Клиент 1С:Предприятия для OS X
 server-win64    | Cервер 1С:Предприятия (64-bit) для Windows
 server-deb64    | Cервер 1С:Предприятия (64-bit) для DEB-based Linux-систем
 thinclient-win64| Тонкий клиент 1С:Предприятие (64-bit) для Windows
