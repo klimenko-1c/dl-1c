@@ -6,8 +6,8 @@ const URL_DOWNLOAD ="%URL_RELEASE/version_file"
 exception ExceptionDL1C;
     
 method extract(text: String, startPattern: String, endPattern: String): String
-    var start = text.Find(startPattern)
-    var end = text.Find(endPattern, start + startPattern.Length())
+    val start = text.Find(startPattern)
+    val end = text.Find(endPattern, start + startPattern.Length())
     return text.Substring(start + startPattern.Length(), end)
 ;
 
