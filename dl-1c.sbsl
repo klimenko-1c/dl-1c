@@ -100,11 +100,11 @@ method download(cookies: Map, nick: String, ver: String, path_folder: String, pa
     response2.Close()
 ;
 
-method downloadPlatform(cookies: Map, version: String, prefix: String, postfix: String, extension: String)
+method downloadPlatform(cookies: Map, version: String, prefix: String, extension: String)
     
     val path_folder = "Platform"
     val path_version = version.Replace(".", "_")
-    val path_filename = path_folder + "_" + path_version + (postfix.IsEmpty() ? "" :  "." + postfix) + "." + extension
+    val path_filename = path_folder + "_" + path_version + "." + extension
 
     val nick = path_folder + version.Split(".")[0] + version.Split(".")[1]
 
@@ -147,19 +147,19 @@ method main(username: String, password: String, target: String, version: String)
 
         case target
         when "platform-win64"
-            downloadPlatform(cookies, version, "windows64full", "", "rar")
+            downloadPlatform(cookies, version, "windows64full", "rar")
         when "platform-win32"
-            downloadPlatform(cookies, version, "windows", "", "rar")
+            downloadPlatform(cookies, version, "windows", "rar")
         when "platform-osx"
-            downloadPlatform(cookies, version, "clientosx", "", "dmg")
+            downloadPlatform(cookies, version, "clientosx", "dmg")
         when "server-win64"
-            downloadPlatform(cookies, version, "windows64", "", "rar")
+            downloadPlatform(cookies, version, "windows64", "rar")
         when "server-deb64"
-            downloadPlatform(cookies, version, "deb64", "", "tar.gz")
+            downloadPlatform(cookies, version, "deb64", "tar.gz")
         when "thinclient-win64"
-            downloadPlatform(cookies, version, "setuptc64", "", "tar.gz")
+            downloadPlatform(cookies, version, "setuptc64", "tar.gz")
         when "thinclient-win32"
-            downloadPlatform(cookies, version, "setuptc", "", "tar.gz")
+            downloadPlatform(cookies, version, "setuptc", "tar.gz")
         when "postgres-win"
             downloadPostgres(cookies, version, "x64", "zip")
         when "postgres-deb"
