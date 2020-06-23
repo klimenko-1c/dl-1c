@@ -50,21 +50,31 @@ method auth(username: String, password: String): String
 
 method download(cookies: String, nick: String, ver: String, path_folder: String, path_version: String, path_filename: String)
 
-    val url = URL_DOWNLOAD 
+    val url1 = URL_DOWNLOAD 
         + "?" + "nick=" + nick
         + "&" + "ver="  + ver
         + "&" + "path=" + path_folder + "\\" + path_version + "\\" + path_filename
 
-    use write = new File(path_filename).OpenWritableStream()
-
-    use response = HttpClient.GetRequest(url)
+    use response1 = HttpClient.GetRequest(url1)
         .SetCookies(cookies)
         .Execute()
 
-    response.Body.CopyTo(write)
+    val src = response1.Body.ReadAsText()
+    response1.Close()
+
+    val end = src.Find(">Скачать дистрибутив<")
+    val start = src.FindFromEnd("\"",, end)
+    val url2 = src.Substring(start + 1, end - 1)
+
+    use response2 = HttpClient.GetRequest(url2)
+        .SetCookies(cookies)
+        .Execute()
+
+    use write = new File(path_filename).OpenWritableStream()
+    response2.Body.CopyTo(write)
 
     write.Close()
-    response.Close()
+    response2.Close()
 ;
 
 method downloadPlatform(cookies: String, version: String, prefix: String, postfix: String, extension: String)
