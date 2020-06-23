@@ -142,7 +142,7 @@ method main(username: String, password: String, target: String, version: String)
     val cookies = auth(username, password)
     
     if target.StartsWith("config-") or target.StartsWith("update-")
-        downloadConfiguration(cookies, version, target.Substring(8), target.StartsWith("update-"))
+        downloadConfiguration(cookies, version, target.Substring(7), target.StartsWith("update-"))
     else
 
         case target
