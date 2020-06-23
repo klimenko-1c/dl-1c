@@ -113,11 +113,11 @@ method downloadPlatform(cookies: Map, version: String, prefix: String, postfix: 
 
 method downloadPostgres(cookies: Map, version: String, postfix: String, extension: String)
 
-    val prefix = "postgreslq"
+    val prefix = "postgresql"
 
     val path_folder = "AddCompPostgre"
     val path_version = version.Replace(".", "_").Replace("-", "_")
-    val path_filename = prefix + "_" + version.Replace("-", "_") + postfix + "." + extension
+    val path_filename = prefix + "_" + version.Replace("-", "_") + "_" + postfix + "." + extension
 
     val nick = path_folder
 
