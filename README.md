@@ -39,7 +39,3 @@ executor.cmd -s dl-1c.sbsl 77777-77 pasw0rd postgres-deb 11.7-5.1C
 executor.cmd -s dl-1c.sbsl 77777-77 pasw0rd config-SSL31 3.1.3.179
 executor.cmd -s dl-1c.sbsl 77777-77 pasw0rd update-HRM30 3.1.14.61
 ```
-
-### Проблемы
-
-Из-за [ошибки](https://github.com/klimenko-1c/dl-1c/issues/1) в (текущей) 2020.2.0.547 версии 1С:Исполнителя эта штука не работает :(
